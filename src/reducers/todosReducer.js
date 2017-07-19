@@ -7,7 +7,9 @@ const initialState = {
 function todosReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_TODO: {
-      return state;
+      return Object.assign({}, state, {
+        todos: state.todos.concat({ text: action.text }),
+      });
     }
     case REMOVE_TODO: {
       return state;
