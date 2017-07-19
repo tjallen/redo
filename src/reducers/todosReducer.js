@@ -4,7 +4,7 @@ const initialState = {
   todos: [],
 };
 
-function todos(state = initialState, action) {
+function todosReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_TODO: {
       return state;
@@ -17,4 +17,4 @@ function todos(state = initialState, action) {
   }
 }
 
-export default todos;
+export default todosReducer;
