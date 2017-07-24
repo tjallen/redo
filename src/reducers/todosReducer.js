@@ -1,7 +1,11 @@
 import { ADD_TODO, REMOVE_TODO } from './../constants';
 
 const initialState = {
-  todos: [],
+  todos: [
+    { text: 'foo' },
+    { text: 'bar' },
+    { text: 'baz' },
+  ],
 };
 
 function todosReducer(state = initialState, action) {
