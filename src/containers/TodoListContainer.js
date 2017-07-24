@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { removeTodo } from './../actions';
 import TodoList from './../components/TodoList';
 
+ // placeholders til we reimplement toggling visibility / removing
 const getVisibleTodos = todos => todos;
 
 const mapStateToProps = state => ({

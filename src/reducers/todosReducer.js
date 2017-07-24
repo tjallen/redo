@@ -1,10 +1,11 @@
+import uuid from 'uuid/v4';
 import { ADD_TODO, REMOVE_TODO } from './../constants';
 
 const initialState = {
   todos: [
-    { text: 'foo' },
-    { text: 'bar' },
-    { text: 'baz' },
+    { id: uuid(), text: 'foo', completed: false },
+    { id: uuid(), text: 'bar', completed: true },
+    { id: uuid(), text: 'baz', completed: false },
   ],
 };
 
