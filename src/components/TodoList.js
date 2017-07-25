@@ -1,14 +1,15 @@
-import React from 'react'
+import React from 'react';
 import Todo from './Todo';
 
-const TodoList = ({ todos, onTodoClick }) => (
+const TodoList = ({ todos, onTodoClick, onButtonClick }) => (
   <ul>
     {todos.map(todo =>
       <Todo
         key={todo.id}
         {...todo}
-        onClick={() => onTodoClick(todo.id)}
-      />,
+        onTodoClick={() => onTodoClick(todo.id)}
+        onButtonClick={() => onButtonClick(todo.id)}
+      />
     )}
   </ul>
 );

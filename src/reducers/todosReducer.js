@@ -1,5 +1,5 @@
 import uuid from 'uuid/v4';
-import { ADD_TODO, REMOVE_TODO } from './../constants';
+import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO } from './../constants';
 
 const initialState = {
   todos: [
@@ -17,6 +17,9 @@ function todosReducer(state = initialState, action) {
       });
     }
     case REMOVE_TODO: {
+      return state;
+    }
+    case TOGGLE_TODO: {
       return state;
     }
     default:
