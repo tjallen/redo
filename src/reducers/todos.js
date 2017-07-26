@@ -1,19 +1,19 @@
-import uuid from 'uuid/v4';
+import { v4 } from 'uuid';
 import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO } from './../constants';
 
-const initialState = {
-  todos: [
-    { id: uuid(), text: 'foo', completed: false },
-    { id: uuid(), text: 'bar', completed: true },
-    { id: uuid(), text: 'baz', completed: false },
-  ],
-};
+const initialState = [
+    { id: v4(), text: 'foo', completed: false },
+    { id: v4(), text: 'bar', completed: true },
+    { id: v4(), text: 'baz', completed: false },
+];
 
 function todosReducer(state = initialState, action) {
   switch (action.type) {
     case ADD_TODO: {
-      return Object.assign({}, state, {
-        todos: state.todos.concat({ text: action.text }),
+      return state.concat({
+        id: action.id,
+        text: action.text,
+        completed: false,
       });
     }
     case REMOVE_TODO: {

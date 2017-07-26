@@ -1,11 +1,11 @@
-// import { combineReducers } from 'redux';
-import todosReducer from './todosReducer';
+import { combineReducers } from 'redux';
+import todos from './todos';
+import settings from './settings';
 
-// const rootReducer = combineReducers({
-//   todosReducer,
-// });
+const rootReducer = combineReducers({
+  todos,
+  settings
+});
 
-export default todosReducer;
-
-// export default rootReducer;
+export default rootReducer;
 
