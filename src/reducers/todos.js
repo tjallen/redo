@@ -17,7 +17,8 @@ function todosReducer(state = initialState, action) {
       });
     }
     case REMOVE_TODO: {
-      return state;
+      // filter todos array to include all but the id passed in action
+      return state.filter((todo, index) => todo.id !== action.id); 
     }
     case TOGGLE_TODO: {
       // map over all todos. ignore if id doesn't match, else return toggled
