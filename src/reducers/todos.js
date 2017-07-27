@@ -20,7 +20,16 @@ function todosReducer(state = initialState, action) {
       return state;
     }
     case TOGGLE_TODO: {
-      return state;
+      // map over all todos. ignore if id doesn't match, else return toggled
+      return state.map((todo) => {
+        if (todo.id !== action.id) {
+          return todo;
+        }
+        return {
+          ...todo,
+          completed: !todo.completed,
+        }
+      })
     }
     default:
       return state;
