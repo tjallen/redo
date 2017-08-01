@@ -2,11 +2,13 @@ import React from 'react';
 import Todo from './Todo';
 import TodoInput from './TodoInput';
 
-const TodoList = ({ todos, onTodoClick, onButtonClick, onTodoInputSubmit }) => (
+const TodoList = ({
+  todos,
+  onTodoClick,
+  onButtonClick,
+}) => (
   <ul>
-    <TodoInput
-      onTodoInputSubmit={() => onTodoInputSubmit(`test ${Date.now()}`)}
-    />
+    <TodoInput />
     {todos.map(todo =>
       <Todo
         key={todo.id}

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { removeTodo, toggleTodo, addTodo } from './../actions';
+import { removeTodo, toggleTodo } from './../actions';
 import TodoList from './../components/TodoList';
 
  // placeholders til we reimplement toggling visibility / removing
@@ -16,10 +16,7 @@ const mapDispatchToProps = (dispatch) => {
     },
     onButtonClick: (id) => {
       dispatch(removeTodo(id));
-    },
-    onTodoInputSubmit: (text) => {
-      dispatch(addTodo(text));
-    },
+    }
   };
 };
 

@@ -1,17 +1,24 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { addTodo } from '../actions';
 
-const TodoInput = ({ onTodoInputSubmit }) => {
+const TodoInput = ({ dispatch }) => {
+  let inputField;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(addTodo(inputField.value));
+  }
   return (
     <div>
-      <form onSubmit={onTodoInputSubmit}>
-        <label>Add a todo</label>
-        <br />
-        <input type="text" name="Add"></input>
-        <hr />
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          ref={el => inputField = el}
+          name="Add"
+        ></input>
+        <input type="submit" />
       </form>
-      debug add <button onClick={onTodoInputSubmit}>+</button>
-      <hr />
     </div>
   );
 };
-export default TodoInput;
+export default connect()(TodoInput);
