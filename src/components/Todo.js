@@ -5,12 +5,12 @@ const Todo = ({ onTodoClick, completed, text, onButtonClick, id }) => (
     <li
       onClick={onTodoClick}
       style={{
+        cursor: 'pointer',
         textDecoration: completed ? 'line-through' : 'none'
       }}
     >
-      {text}
+      {text} <span onClick={onButtonClick}>X</span>
     </li>
-    <button onClick={onButtonClick}>X</button>
   </div>
 );
 

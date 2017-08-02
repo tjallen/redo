@@ -7,6 +7,7 @@ const TodoInput = ({ dispatch }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addTodo(inputField.value));
+    inputField.value = '';
   }
   return (
     <div>
@@ -15,8 +16,9 @@ const TodoInput = ({ dispatch }) => {
           type="text"
           ref={el => inputField = el}
           name="Add"
+          placeholder="What do I need to do?"
         ></input>
-        <input type="submit" />
+        <input type="submit" value="Add to list" />
       </form>
     </div>
   );
