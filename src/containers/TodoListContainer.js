@@ -1,15 +1,14 @@
 import { connect } from 'react-redux';
-import { removeTodo, toggleTodo } from './../actions';
+import { removeTodo, toggleTodo, setVisibleTodos } from './../actions';
 import TodoList from './../components/TodoList';
 
- // placeholders til we reimplement toggling visibility / removing
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
     case 'DISPLAY_ALL': return todos;
-    case 'DISPLAY_ACTIVE': break; // TODO filter by !completed
-    case 'DISPLAY_COMPLETED': break; // TODO filter by completed
+    case 'DISPLAY_ACTIVE': return todos.filter(todo => !todo.completed);
+    case 'DISPLAY_COMPLETED': return todos.filter(todo => todo.completed);
     default:
-      return todos; // throw err once filters are implemented
+      throw new Error(`trying to filter todos by unknown or erroneous filter: ${filter}`);
   }
 };
 
@@ -24,6 +23,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onButtonClick: (id) => {
       dispatch(removeTodo(id));
+    },
+    onFilterClick: (filter) => {
+      dispatch(setVisibleTodos(filter));
     }
   };
 };
