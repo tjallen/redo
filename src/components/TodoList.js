@@ -1,7 +1,7 @@
 import React from 'react';
 import Todo from './Todo';
 import TodoInput from './TodoInput';
-import VisibilityFilterMenu from './VisibilityFilterMenu';
+import VisibilityMenu from './VisibilityMenu';
 
 const TodoList = ({
   todos,
@@ -12,7 +12,7 @@ const TodoList = ({
   <div>
     <ul>
       <TodoInput />
-      <VisibilityFilterMenu
+      <VisibilityMenu
         onFilterClick={onFilterClick}
       />
       {todos.map(todo =>
