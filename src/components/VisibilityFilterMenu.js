@@ -1,16 +1,23 @@
 import React from 'react';
-const listItem = {
-  'display': 'inline',
-  'margin': '0 5px 0 0'
-}
+import VisibilityMenuItem from './VisibilityMenuItem';
+
 const VisibilityFilterMenu = ({ onFilterClick }) => (
   <ul style={{ 'listStyleType': 'none', 'margin': 0, 'padding': 0}}>
-    <li style={listItem}
-      onClick={() => onFilterClick('DISPLAY_ALL')}>All</li>
-    <li style={listItem}
-      onClick={() => onFilterClick('DISPLAY_ACTIVE')}>Active</li>
-    <li style={listItem}
-      onClick={() => onFilterClick('DISPLAY_COMPLETED')}>Completed</li>
+    <VisibilityMenuItem
+      onFilterClick={onFilterClick}
+      readableText='All'
+      filterText='DISPLAY_ALL'
+    />
+    <VisibilityMenuItem
+      onFilterClick={onFilterClick}
+      readableText='Active'
+      filterText='DISPLAY_ACTIVE'
+    />
+    <VisibilityMenuItem
+      onFilterClick={onFilterClick}
+      readableText='Completed'
+      filterText='DISPLAY_COMPLETED'
+    />
   </ul>
 );
 
