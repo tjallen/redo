@@ -1,15 +1,15 @@
 import React from 'react';
 
-const Todo = ({ onTodoClick, completed, text, onButtonClick, id }) => (
+const Todo = ({
+  text,
+  id,
+  completed,
+  onToggleCompletedClick,
+  onRemoveTodoClick,
+}) => (
   <div>
-    <li
-      onClick={onTodoClick}
-      style={{
-        cursor: 'pointer',
-        textDecoration: completed ? 'line-through' : 'none'
-      }}
-    >
-      {text} <span onClick={onButtonClick}>X</span>
+    <li>
+      <span style={{textDecoration: completed ? 'line-through' : 'none'}}>{text}</span> <input type="checkbox" onChange={onToggleCompletedClick} checked={completed}></input> <span onClick={onRemoveTodoClick}>X</span>
     </li>
   </div>
 );

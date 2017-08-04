@@ -5,8 +5,8 @@ import VisibilityMenu from './VisibilityMenu';
 
 const TodoList = ({
   todos,
-  onTodoClick,
-  onButtonClick,
+  onToggleCompletedClick,
+  onRemoveTodoClick,
   onFilterClick,
 }) => (
   <div>
@@ -19,8 +19,8 @@ const TodoList = ({
         <Todo
           key={todo.id}
           {...todo}
-          onTodoClick={() => onTodoClick(todo.id)}
-          onButtonClick={() => onButtonClick(todo.id)}
+          onToggleCompletedClick={() => onToggleCompletedClick(todo.id)}
+          onRemoveTodoClick={() => onRemoveTodoClick(todo.id)}
         />
       )}
     </ul>
