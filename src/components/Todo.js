@@ -6,10 +6,11 @@ const Todo = ({
   completed,
   onToggleCompletedClick,
   onRemoveTodoClick,
+  onEditTodoClick,
 }) => (
   <div>
     <li>
-      <span style={{textDecoration: completed ? 'line-through' : 'none'}}>{text}</span> <input type="checkbox" onChange={onToggleCompletedClick} checked={completed}></input> <span onClick={onRemoveTodoClick}>X</span>
+      <span onClick={onEditTodoClick} style={{textDecoration: completed ? 'line-through' : 'none'}}>{text}</span> <input type="checkbox" onChange={onToggleCompletedClick} checked={completed}></input> <span onClick={onRemoveTodoClick}>X</span>
     </li>
   </div>
 );

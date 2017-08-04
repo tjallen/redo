@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO } from './../constants';
+import { ADD_TODO, EDIT_TODO, REMOVE_TODO, TOGGLE_TODO } from './../constants';
 
 const initialState = [
     { id: v4(), text: 'foo', completed: false },
@@ -15,6 +15,9 @@ function todosReducer(state = initialState, action) {
         text: action.text,
         completed: false,
       });
+    }
+    case EDIT_TODO: { // TODO placeholder
+      return state;
     }
     case REMOVE_TODO: {
       // filter todos array to include all but the id passed in action
