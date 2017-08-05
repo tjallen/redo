@@ -2,9 +2,9 @@ import { v4 } from 'uuid';
 import { ADD_TODO, EDIT_TODO, REMOVE_TODO, TOGGLE_TODO } from './../constants';
 
 const initialState = [
-    { id: v4(), text: 'foo', completed: false },
-    { id: v4(), text: 'bar', completed: true },
-    { id: v4(), text: 'baz', completed: false },
+    { id: v4(), text: 'foo', editing: false, completed: false },
+    { id: v4(), text: 'bar', editing: false, completed: true },
+    { id: v4(), text: 'baz', editing: false, completed: false },
 ];
 
 function todosReducer(state = initialState, action) {
@@ -17,7 +17,15 @@ function todosReducer(state = initialState, action) {
       });
     }
     case EDIT_TODO: { // TODO placeholder
-      return state;
+      return state.map((todo) => {
+        if (todo.id !== action.id) {
+          return todo;
+        }
+        return {
+          ...todo,
+          editing: !todo.editing
+        }
+      })
     }
     case REMOVE_TODO: {
       // filter todos array to include all but the id passed in action
