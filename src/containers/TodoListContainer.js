@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch) => {
     onFilterClick: (filter) => {
       dispatch(setVisibleTodos(filter));
     },
-    onEditTodoClick: (id, text) => {
+    onEditTodoComplete: (id, text) => {
       dispatch(editTodo(id, text));
     }
   };

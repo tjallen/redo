@@ -8,7 +8,7 @@ const TodoList = ({
   onToggleCompletedClick,
   onRemoveTodoClick,
   onFilterClick,
-  onEditTodoClick,
+  onEditTodoComplete,
 }) => (
   <div>
     <ul>
@@ -22,7 +22,7 @@ const TodoList = ({
           {...todo}
           onToggleCompletedClick={() => onToggleCompletedClick(todo.id)}
           onRemoveTodoClick={() => onRemoveTodoClick(todo.id)}
-          onEditTodoClick={() => onEditTodoClick(todo.id, todo.text)}
+          onEditTodoComplete={() => onEditTodoComplete(todo.id, todo.text)}
         />
       )}
     </ul>
