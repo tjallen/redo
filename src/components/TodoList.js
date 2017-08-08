@@ -22,7 +22,7 @@ const TodoList = ({
           {...todo}
           onToggleCompletedClick={() => onToggleCompletedClick(todo.id)}
           onRemoveTodoClick={() => onRemoveTodoClick(todo.id)}
-          onEditTodoComplete={() => onEditTodoComplete(todo.id, todo.text)}
+          onEditTodoComplete={onEditTodoComplete}
         />
       )}
     </ul>

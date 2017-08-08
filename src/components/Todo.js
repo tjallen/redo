@@ -11,17 +11,14 @@ export default class Todo extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
-    this.completeEdit = this.completeEdit.bind(this);
   }
   handleTodoClick() {
     this.setState({ editing: true });
   }
   handleChange() {
-    console.log('Todo onChange', this.textInput.value);
     this.setState({ text: this.textInput.value });
   }
   handleKeyDown(e) {
-    console.log('Todo handleKeyDown', e, this.textInput.value);
     if (e.keyCode === 13) {
       this.completeEdit();
     }
@@ -40,11 +37,9 @@ export default class Todo extends Component {
   render() {
     const {
       text,
-      id,
       completed,
       onToggleCompletedClick,
       onRemoveTodoClick,
-      onEditTodoClick,
     } = this.props;
     let el;
     if (this.state.editing) {

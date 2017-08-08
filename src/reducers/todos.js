@@ -16,14 +16,15 @@ function todosReducer(state = initialState, action) {
         completed: false,
       });
     }
-    case EDIT_TODO: { // TODO placeholder
+    case EDIT_TODO: {
+      console.log('EDIT_TODO');
       return state.map((todo) => {
         if (todo.id !== action.id) {
           return todo;
         }
         return {
           ...todo,
-          editing: !todo.editing
+          text: action.text,
         }
       })
     }
