@@ -17,7 +17,6 @@ function todosReducer(state = initialState, action) {
       });
     }
     case EDIT_TODO: {
-      console.log('EDIT_TODO');
       return state.map((todo) => {
         if (todo.id !== action.id) {
           return todo;

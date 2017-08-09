@@ -12,6 +12,13 @@ export default class Todo extends Component {
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
   }
+  componentDidUpdate() {
+    // set caret to end of input when editing
+    if (this.state.editing) {
+      const l = this.textInput.value.length;
+      this.textInput.setSelectionRange(l, l);
+    }
+  }
   handleTodoClick() {
     this.setState({ editing: true });
   }
