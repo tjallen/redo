@@ -10,11 +10,13 @@ const TodoList = ({
   onRemoveTodoClick,
   onFilterClick,
   onEditTodoComplete,
+  onClearCompletedClick,
 }) => {
   return (
     <div>
       <TodoInput />
       <TodoCount todos={todos} />
+      <button onClick={onClearCompletedClick}>Clear completed</button>
       <VisibilityMenu
         onFilterClick={onFilterClick}
       />

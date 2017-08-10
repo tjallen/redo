@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-import { ADD_TODO, EDIT_TODO, REMOVE_TODO, TOGGLE_TODO } from './../constants';
+import { ADD_TODO, EDIT_TODO, REMOVE_TODO, TOGGLE_TODO, CLEAR_COMPLETED } from './../constants';
 
 const initialState = [
     { id: v4(), text: 'foo', editing: false, completed: false },
@@ -42,6 +42,9 @@ function todosReducer(state = initialState, action) {
           completed: !todo.completed,
         }
       })
+    }
+    case CLEAR_COMPLETED : {
+      return state.filter((todo) => todo.completed === false);
     }
     default:
       return state;
