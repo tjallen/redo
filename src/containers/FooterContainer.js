@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { removeTodo, editTodo, toggleTodo } from './../actions';
-import TodoList from './../components/TodoList';
+import { setVisibleTodos, clearCompleted } from './../actions';
+import Footer from './../components/Footer';
 
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
@@ -18,21 +18,18 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onToggleCompletedClick: (id) => {
-      dispatch(toggleTodo(id));
+    onFilterClick: (filter) => {
+      dispatch(setVisibleTodos(filter));
     },
-    onRemoveTodoClick: (id) => {
-      dispatch(removeTodo(id));
-    },
-    onEditTodoComplete: (id, text) => {
-      dispatch(editTodo(id, text));
-    },
+    onClearCompletedClick: () => {
+      dispatch(clearCompleted());
+    }
   };
 };
 
-const TodoListContainer = connect(
+const FooterContainer = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(TodoList);
+)(Footer);
 
-export default TodoListContainer;
+export default FooterContainer;
