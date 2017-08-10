@@ -2,10 +2,10 @@ import React from 'react';
 import TodoCount from './TodoCount';
 import VisibilityMenu from './VisibilityMenu';
 
-const Footer = ({ todos, onFilterClick, onClearCompletedClick }) => {
+const Footer = ({ allTodos, todos, onFilterClick, onClearCompletedClick }) => {
   return (
     <div>
-      <TodoCount todos={todos} />
+      <TodoCount todos={allTodos} />
       <VisibilityMenu
         onFilterClick={onFilterClick}
       />
