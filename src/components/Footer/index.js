@@ -2,14 +2,20 @@ import React from 'react';
 import TodoCount from './TodoCount';
 import VisibilityMenu from './VisibilityMenu';
 
-const Footer = ({ allTodos, todos, onFilterClick, onClearCompletedClick }) => {
+const Footer = ({
+  allTodos,
+  todos,
+  onFilterClick,
+  onClearCompletedClick,
+  completedTodosPresent,
+}) => {
   return (
     <div>
       <TodoCount todos={allTodos} />
       <VisibilityMenu
         onFilterClick={onFilterClick}
       />
-      <button onClick={onClearCompletedClick}>Clear completed</button>
+      {completedTodosPresent && <button onClick={onClearCompletedClick}>Clear completed</button>}
     </div>
   );
 };

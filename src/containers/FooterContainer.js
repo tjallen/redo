@@ -15,6 +15,7 @@ const getVisibleTodos = (todos, filter) => {
 const mapStateToProps = state => ({
   allTodos: state.todos,
   todos: getVisibleTodos(state.todos, state.settings.filter),
+  completedTodosPresent: state.todos.filter(todo => todo.completed).length > 0 ? true : false
 });
 
 const mapDispatchToProps = (dispatch) => {
