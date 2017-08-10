@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import { setVisibleTodos, clearCompleted } from './../actions';
 import Footer from './../components/Footer';
 
-const getVisibleTodos = (todos, filter) => {
+/*const getVisibleTodos = (todos, filter) => {
   switch (filter) {
     case 'DISPLAY_ALL': return todos;
     case 'DISPLAY_ACTIVE': return todos.filter(todo => !todo.completed);
@@ -10,11 +10,11 @@ const getVisibleTodos = (todos, filter) => {
     default:
       throw new Error(`trying to filter todos by unknown or erroneous filter: ${filter}`);
   }
-};
+};*/
 
 const mapStateToProps = state => ({
-  allTodos: state.todos,
-  todos: getVisibleTodos(state.todos, state.settings.filter),
+  todos: state.todos,
+  //todos: getVisibleTodos(state.todos, state.settings.filter),
   completedTodosPresent: state.todos.filter(todo => todo.completed).length > 0 ? true : false
 });
 
