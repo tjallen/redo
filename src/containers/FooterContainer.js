@@ -15,7 +15,8 @@ import Footer from './../components/Footer';
 const mapStateToProps = state => ({
   todos: state.todos,
   //todos: getVisibleTodos(state.todos, state.settings.filter),
-  completedTodosPresent: state.todos.filter(todo => todo.completed).length > 0 ? true : false
+  completedTodosPresent: state.todos.filter(todo => todo.completed).length > 0 ? true : false,
+  currentActiveFilter: state.settings.filter,
 });
 
 const mapDispatchToProps = (dispatch) => {

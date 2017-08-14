@@ -8,6 +8,7 @@ const Footer = ({
   onFilterClick,
   onClearCompletedClick,
   completedTodosPresent,
+  currentActiveFilter,
 }) => {
   const total = todos.length;
   const completed = todos.reduce((acc, todo) => {
@@ -20,6 +21,7 @@ const Footer = ({
       <TodoCount count={active} />
       <VisibilityMenu
         onFilterClick={onFilterClick}
+        currentActiveFilter={currentActiveFilter}
       />
       {completedTodosPresent &&
         <ClearCompletedButton
