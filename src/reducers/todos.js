@@ -1,13 +1,6 @@
-import { v4 } from 'uuid';
 import { ADD_TODO, EDIT_TODO, REMOVE_TODO, TOGGLE_TODO, CLEAR_COMPLETED } from './../constants';
 
-const initialState = [
-    { id: v4(), text: 'foo', editing: false, completed: false },
-    { id: v4(), text: 'bar', editing: false, completed: true },
-    { id: v4(), text: 'baz', editing: false, completed: false },
-];
-
-function todosReducer(state = initialState, action) {
+function todosReducer(state = [], action) {
   switch (action.type) {
     case ADD_TODO: {
       return state.concat({
