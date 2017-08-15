@@ -9,6 +9,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './reducers';
 import { loadState, saveState } from './localStorage';
+import throttle from 'lodash/throttle';
 
 // load persisted todos state from localStorage
 const preloadedState = loadState();
@@ -21,11 +22,11 @@ const store = createStore(
 );
 
 // on store change, save todos to localStorage
-store.subscribe(() => {
+store.subscribe(throttle(() => {
   saveState({
     todos: store.getState().todos
   });
-});
+}, 1000));
 
 ReactDOM.render(
   <Provider store={store}>
