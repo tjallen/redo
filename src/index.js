@@ -8,15 +8,10 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import rootReducer from './reducers';
-import { v4 } from 'uuid';
+import { loadState, saveState } from './localStorage';
 
-const preloadedState = {
-  todos: [
-      { id: v4(), text: 'foo', editing: false, completed: false },
-      { id: v4(), text: 'bar', editing: false, completed: true },
-      { id: v4(), text: 'baz', editing: false, completed: false },
-  ]
-} 
+// load persisted todos state from localStorage
+const preloadedState = loadState();
 
 const middleware = applyMiddleware(logger);
 const store = createStore(
@@ -25,7 +20,12 @@ const store = createStore(
   composeWithDevTools(middleware),
 );
 
-window.store = store;
+// on store change, save todos to localStorage
+store.subscribe(() => {
+  saveState({
+    todos: store.getState().todos
+  });
+});
 
 ReactDOM.render(
   <Provider store={store}>
