@@ -49,7 +49,9 @@ export default class Todo extends Component {
       this.props.onRemoveTodoClick(this.props.id);
       return;
     }
-    this.props.onEditTodoComplete(this.props.id, this.state.text);
+    if (this.state.text !== this.props.text) {
+      this.props.onEditTodoComplete(this.props.id, this.state.text);
+    }
     this.setState({ editing: false });
   }
   render() {
