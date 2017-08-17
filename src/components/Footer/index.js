@@ -2,6 +2,7 @@ import React from 'react';
 import TodoCount from './TodoCount';
 import VisibilityMenu from './VisibilityMenu';
 import ClearCompletedButton from './ClearCompletedButton';
+import { Link } from 'react-router-dom';
 
 const Footer = ({
   todos,
@@ -18,7 +19,14 @@ const Footer = ({
   const active = remaining > 0 ? `${remaining} remaining` : `All done!`;
   return (
     <div>
+      <p>rrv4 filters:</p>
+      <Link to='/'>all</Link>
+      { ' ' }
+      <Link to='/active'>active</Link>
+      { ' ' }
+      <Link to='/completed'>completed</Link>
       <TodoCount count={active} />
+      <p>old filters to replace:</p>
       <VisibilityMenu
         onFilterClick={onFilterClick}
         currentActiveFilter={currentActiveFilter}

@@ -4,16 +4,19 @@ import TodoList from './../components/TodoList';
 
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
-    case 'DISPLAY_ALL': return todos;
-    case 'DISPLAY_ACTIVE': return todos.filter(todo => !todo.completed);
-    case 'DISPLAY_COMPLETED': return todos.filter(todo => todo.completed);
+    case 'all': return todos;
+    case 'active': return todos.filter(todo => !todo.completed);
+    case 'completed': return todos.filter(todo => todo.completed);
     default:
-      throw new Error(`trying to filter todos by unknown or erroneous filter: ${filter}`);
+      console.log(
+        `trying to filter todos by unknown or erroneous filter: ${filter}`
+      )
+      return todos;
   }
 };
 
-const mapStateToProps = state => ({
-  todos: getVisibleTodos(state.todos, state.settings.filter),
+const mapStateToProps = (state, ownProps) => ({
+  todos: getVisibleTodos(state.todos, ownProps.filter),
 });
 
 const mapDispatchToProps = (dispatch) => {
