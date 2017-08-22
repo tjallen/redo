@@ -23,23 +23,28 @@ const mapStateToProps = (state, { match }) => ({
   ),
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onToggleCompletedClick: (id) => {
-      dispatch(toggleTodo(id));
-    },
-    onRemoveTodoClick: (id) => {
-      dispatch(removeTodo(id));
-    },
-    onEditTodoComplete: (id, text) => {
-      dispatch(editTodo(id, text));
-    },
-  };
-};
+// when mapDispatchToProps arguments for callback props match the args for the action creators exactly, rather than the usual mapDispatchToProps(), we can pass a mapping object whose properties correspond to the callback props, and values match the action creators
+// const mapDispatchToProps = (dispatch) => {
+//   return {
+//     onToggleCompletedClick: (id) => {
+//       dispatch(toggleTodo(id));
+//     },
+//     onRemoveTodoClick: (id) => {
+//       dispatch(removeTodo(id));
+//     },
+//     onEditTodoComplete: (id, text) => {
+//       dispatch(editTodo(id, text));
+//     },
+//   };
+// };
 
 const TodoListContainer = withRouter(connect(
   mapStateToProps,
-  mapDispatchToProps,
+  {
+    onToggleCompletedClick: toggleTodo,
+    onRemoveTodoClick: removeTodo,
+    onEditTodoComplete: editTodo,
+  }
 )(TodoList));
 
 export default TodoListContainer;
