@@ -1,26 +1,25 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 const VisibilityMenuItem = ({
-  readableText,
-  filterText,
-  currentActiveFilter,
-  onFilterClick
+  location,
+  filter,
+  children
 }) => {
-  const active = filterText === currentActiveFilter;
   const itemStyles = {
     'display': 'inline',
     'margin': '10px 0',
     'padding': '5px',
-    'backgroundColor': active ? '#000' : '#999',
-    'color': active ? '#fff' : '#000'
+    'backgroundColor': '#999',
+    'color': '#000'
   };
   return (
-    <li
+    <NavLink
+      to={filter === 'all' ? '' : filter}
       style={itemStyles}
-      onClick={() => onFilterClick(filterText)}
     >
-      {readableText}
-    </li>
+      {children}
+    </NavLink>
   );
 }
 
