@@ -3,9 +3,9 @@ import './App.css';
 import TodoListContainer from './containers/TodoListContainer';
 import FooterContainer from './containers/FooterContainer';
 
-const App = ({ match }) => (
+const App = () => (
   <div>
-    <TodoListContainer filter={match.params.filter || 'all'}/>
+    <TodoListContainer />
     <FooterContainer />
   </div>
 );
