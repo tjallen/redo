@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import todos from './todos';
 import settings from './settings';
+import todos, * as fromTodos from './todos';
 
 const rootReducer = combineReducers({
   todos,
@@ -8,4 +8,8 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
+// named export selector
+export const getVisibleTodos = (state, filter) => {
+  return fromTodos.getVisibleTodos(state.todos, filter)
+}
 

@@ -45,3 +45,16 @@ function todosReducer(state = [], action) {
 }
 
 export default todosReducer;
+// named export selector
+export const getVisibleTodos = (state, filter) => {
+  switch (filter) {
+    case 'all': return state;
+    case 'active': return state.filter(todo => !todo.completed);
+    case 'completed': return state.filter(todo => todo.completed);
+    default:
+      console.log(
+        `trying to filter state (todos) by unknown or erroneous filter: ${filter}`
+      )
+      return state;
+  }
+};
