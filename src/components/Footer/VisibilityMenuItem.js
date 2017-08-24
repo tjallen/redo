@@ -9,6 +9,7 @@ const VisibilityMenuItem = ({
     <NavLink
       to={filter === 'all' ? '/' : `/${filter}`}
       activeClassName='filter--active'
+      exact
     >
       {children}
     </NavLink>
