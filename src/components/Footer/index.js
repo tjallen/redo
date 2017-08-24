@@ -13,8 +13,8 @@ const Footer = ({
   }, 0);
   return (
     <div>
-      <TodoCount count={todos.length - completed} />
       <VisibilityMenu />
+      <TodoCount count={todos.length - completed} />
       {completedTodosPresent &&
         <ClearCompletedButton
           count={completed}

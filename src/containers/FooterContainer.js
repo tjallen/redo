@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { clearCompleted } from './../actions';
 import Footer from './../components/Footer';
+import { withRouter } from 'react-router-dom';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, { params }) => ({
   todos: state.todos,
-  //todos: getVisibleTodos(state.todos, state.settings.filter),
   completedTodosPresent: state.todos.filter(todo => todo.completed).length > 0 ? true : false,
 });
 
@@ -16,9 +16,9 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const FooterContainer = connect(
+const FooterContainer = withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Footer);
+)(Footer));
 
 export default FooterContainer;

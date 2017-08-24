@@ -22,3 +22,19 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+ul.nav-filters {
+  margin: 0;
+  padding: 0;
+}
+ul.nav-filters a {
+  margin-right: 5px;
+}
+
+.filter--active {
+  color: #939393;
+  text-decoration: none;
+}
+
+.filter--active:hover {
+  cursor: default;
+}
