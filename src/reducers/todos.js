@@ -1,7 +1,7 @@
 import {
   ADD_TODO,
   EDIT_TODO,
-  // REMOVE_TODO,
+  REMOVE_TODO,
   TOGGLE_TODO,
   // CLEAR_COMPLETED
 } from './../constants';
@@ -10,8 +10,12 @@ import todo from './todo';
 
 const allIds = (state = [], action) => {
   switch (action.type) {
-    case ADD_TODO: 
+    case ADD_TODO: { 
       return [...state, action.id];
+    }
+    case REMOVE_TODO: {
+      return state.filter(id => id !== action.id);
+    }
     default:
       return state;
   }
@@ -26,10 +30,11 @@ function byId(state = {}, action) {
         ...state,
         [action.id]: todo(state[action.id], action),
       }
-    // case REMOVE_TODO: {
-    //   // filter todos array to include all but the id passed in action
-    //   return state.filter((todo) => todo.id !== action.id); 
-    // }
+      case REMOVE_TODO: {
+        const copied = Object.assign({}, state);
+        delete copied[action.id];
+        return copied;
+      }
     // case CLEAR_COMPLETED : {
     //   return state.filter((todo) => todo.completed === false);
     // }

@@ -6,6 +6,16 @@ import {
   // CLEAR_COMPLETED
 } from './../constants';
 
+const updateTodo = (state, action, prop, val) => {
+  if (state.id !== action.id) {
+    return state;
+  }
+  return {
+    ...state,
+    [prop]: val
+  }
+}
+
 const todo = (state, action) => {
   switch (action.type) {
     case ADD_TODO: {
@@ -16,22 +26,10 @@ const todo = (state, action) => {
       }
     }
     case TOGGLE_TODO: {
-      if (state.id !== action.id) {
-        return state;
-      }
-      return {
-        ...state,
-        completed: !state.completed,
-      }
+      return updateTodo(state, action, 'completed', !state.completed);
     }
     case EDIT_TODO: {
-      if (state.id !== action.id) {
-        return state;
-      }
-      return {
-        ...state,
-        text: action.text,
-      }
+      return updateTodo(state, action, 'text', action.text);
     }
     default:
       return state;
