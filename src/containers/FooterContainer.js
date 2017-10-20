@@ -2,10 +2,13 @@ import { connect } from 'react-redux';
 import { clearCompleted } from './../actions';
 import Footer from './../components/Footer';
 import { withRouter } from 'react-router-dom';
+import { getVisibleTodos } from '../reducers';
 
-const mapStateToProps = (state, { params }) => ({
-  todos: state.todos,
-  completedTodosPresent: state.todos.filter(todo => todo.completed).length > 0,
+const mapStateToProps = (state, { match }) => ({
+  todos: getVisibleTodos(
+    state,
+    match.params.filter || 'all'
+  ),
 });
 
 const mapDispatchToProps = (dispatch) => {

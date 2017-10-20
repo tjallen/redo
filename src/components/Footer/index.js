@@ -6,21 +6,23 @@ import ClearCompletedButton from './ClearCompletedButton';
 const Footer = ({
   todos,
   onClearCompletedClick,
-  completedTodosPresent,
 }) => {
   const completed = todos.reduce((acc, todo) => {
     return todo.completed ? acc + 1 : acc
   }, 0);
+  console.log(todos);
+  
   return (
     <div>
       <VisibilityMenu />
       <TodoCount count={todos.length - completed} />
-      {completedTodosPresent &&
+      {completed > 0 ?
         <ClearCompletedButton
           count={completed}
           onClearCompletedClick={onClearCompletedClick}
           >Clear completed
         </ClearCompletedButton>
+        : null
       }
     </div>
   );
