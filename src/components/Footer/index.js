@@ -10,8 +10,6 @@ const Footer = ({
   const completed = todos.reduce((acc, todo) => {
     return todo.completed ? acc + 1 : acc
   }, 0);
-  console.log(todos);
-  
   return (
     <div>
       <VisibilityMenu />

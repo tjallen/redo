@@ -6,38 +6,7 @@ import {
   // CLEAR_COMPLETED
 } from './../constants';
 import { combineReducers } from 'redux';
-
-const todo = (state, action) => {
-  switch(action.type) {
-    case ADD_TODO: {
-      return {
-        id: action.id,
-        text: action.text,
-        completed: false,
-      }
-    }
-    case TOGGLE_TODO: {
-      if (state.id !== action.id) {
-        return state;
-      }
-      return {
-        ...state,
-        completed: !state.completed,
-      }
-    }
-    case EDIT_TODO: {
-      if (state.id !== action.id) {
-        return state;
-      }
-      return {
-        ...state,
-        text: action.text,
-      }
-    }
-    default:
-      return state;
-  }
-}
+import todo from './todo';
 
 const allIds = (state = [], action) => {
   switch (action.type) {
@@ -80,10 +49,7 @@ const getAllTodos = (state) =>
 export default todosReducer;
 // named export selector
 export const getVisibleTodos = (state, filter) => {
-  console.log(`=> ${JSON.stringify(state)}`)
   const allTodos = getAllTodos(state);
-  console.log(allTodos);
-  
   switch (filter) {
     case 'all': return allTodos;
     case 'active': return allTodos.filter(todo => !todo.completed);

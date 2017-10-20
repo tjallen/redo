@@ -10,8 +10,6 @@ const rootReducer = combineReducers({
 export default rootReducer;
 // named export selector
 export const getVisibleTodos = (state, filter) => {
-  console.log(`getVisibleTodos`)
-  console.log(state);
   return fromTodos.getVisibleTodos(state.todos, filter)
 }
 
