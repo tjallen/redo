@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 
 const mapStateToProps = (state, { params }) => ({
   todos: state.todos,
-  completedTodosPresent: state.todos.filter(todo => todo.completed).length > 0 ? true : false,
+  completedTodosPresent: state.todos.filter(todo => todo.completed).length > 0,
 });
 
 const mapDispatchToProps = (dispatch) => {
