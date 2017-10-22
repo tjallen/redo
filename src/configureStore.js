@@ -5,15 +5,12 @@ import rootReducer from './reducers';
 
 // returns a configured store instance
 const configureStore = () => {
-  // load persisted todos state from localStorage
 
   const middleware = applyMiddleware(logger);
   const store = createStore(
     rootReducer,
     composeWithDevTools(middleware),
   );
-
-
   
   return store;
 }
