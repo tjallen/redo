@@ -1,7 +1,19 @@
 import { v4 } from 'uuid';
-import { ADD_TODO, EDIT_TODO, REMOVE_TODO, TOGGLE_TODO, REMOVE_TODOS } from './../constants';
+import {
+  RECEIVE_TODOS,
+  ADD_TODO,
+  EDIT_TODO,
+  REMOVE_TODO,
+  TOGGLE_TODO,
+  REMOVE_TODOS
+} from './../constants';
 
 // action creators
+export const receiveTodos = (filter, response) => ({
+  type: RECEIVE_TODOS,
+  filter,
+  response,
+})
 export const addTodo = (text) => ({
    type: ADD_TODO, text, id: v4(),
 });

@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { removeTodo, editTodo, toggleTodo } from './../actions';
+import {
+  receiveTodos,
+  removeTodo,
+  editTodo,
+  toggleTodo
+} from './../actions';
 import TodoList from './../components/TodoList';
 import { withRouter } from 'react-router-dom';
 import { getVisibleTodos } from '../reducers';
@@ -16,9 +21,10 @@ class TodoListContainer extends Component {
     }
   }
   fetchData() {
+    const { filter, receiveTodos } = this.props;
     fetchTodos(this.props.filter).then(todos =>
-      console.log(this.props.filter, todos)
-    )
+      receiveTodos(filter, todos)
+    );
   }
   render() {
     return <TodoList {...this.props} />;
@@ -38,6 +44,7 @@ TodoListContainer = withRouter(connect(
     onToggleCompletedClick: toggleTodo,
     onRemoveTodoClick: removeTodo,
     onEditTodoComplete: editTodo,
+    receiveTodos,
   }
 )(TodoListContainer));
 
