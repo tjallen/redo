@@ -8,8 +8,7 @@ const Footer = ({
   onClearCompletedClick,
 }) => {
   const completeIds = todos.filter(t => t.completed).map(t => t.id);
-  const completeCount = todos.reduce((acc, t) => 
-    t.completed ? acc + 1 : acc, 0);
+  const completeCount = completeIds.length;
   return (
     <div>
       <VisibilityMenu />
