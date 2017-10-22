@@ -7,9 +7,17 @@ import {
   TOGGLE_TODO,
   REMOVE_TODOS
 } from './../constants';
+import * as api from '../api';
+
+// async action creators
+export const fetchTodos = (filter) =>
+  api.fetchTodos(filter)
+    .then(response =>
+      receiveTodos(filter, response)
+  );
 
 // action creators
-export const receiveTodos = (filter, response) => ({
+const receiveTodos = (filter, response) => ({
   type: RECEIVE_TODOS,
   filter,
   response,

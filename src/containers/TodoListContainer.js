@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  receiveTodos,
+  fetchTodos,
   removeTodo,
   editTodo,
   toggleTodo
@@ -9,7 +9,6 @@ import {
 import TodoList from './../components/TodoList';
 import { withRouter } from 'react-router-dom';
 import { getVisibleTodos } from '../reducers';
-import { fetchTodos } from '../api';
 
 class TodoListContainer extends Component {
   componentDidMount() {
@@ -21,10 +20,8 @@ class TodoListContainer extends Component {
     }
   }
   fetchData() {
-    const { filter, receiveTodos } = this.props;
-    fetchTodos(this.props.filter).then(todos =>
-      receiveTodos(filter, todos)
-    );
+    const { filter, fetchTodos } = this.props;
+    fetchTodos(filter);
   }
   render() {
     return <TodoList {...this.props} />;
@@ -44,7 +41,7 @@ TodoListContainer = withRouter(connect(
     onToggleCompletedClick: toggleTodo,
     onRemoveTodoClick: removeTodo,
     onEditTodoComplete: editTodo,
-    receiveTodos,
+    fetchTodos,
   }
 )(TodoListContainer));
 

@@ -3,6 +3,15 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from 'redux-logger';
 import rootReducer from './reducers';
 
+const addPromiseSupportToDispatch = (store) => {
+  const rawDispatch = store.dispatch;
+  return (action) => {
+    if (typeof action.then === 'function') {
+      return action.then(rawDispatch);
+    }
+    return rawDispatch(action);
+  }
+}
 // returns a configured store instance
 const configureStore = () => {
 
@@ -11,6 +20,8 @@ const configureStore = () => {
     rootReducer,
     composeWithDevTools(middleware),
   );
+
+  store.dispatch = addPromiseSupportToDispatch(store);
   
   return store;
 }
