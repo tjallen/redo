@@ -2,8 +2,8 @@ import {
   ADD_TODO,
   EDIT_TODO,
   REMOVE_TODO,
+  REMOVE_TODOS,
   TOGGLE_TODO,
-  // CLEAR_COMPLETED
 } from './../constants';
 import { combineReducers } from 'redux';
 import todo from './todo';
@@ -15,6 +15,9 @@ const allIds = (state = [], action) => {
     }
     case REMOVE_TODO: {
       return state.filter(id => id !== action.id);
+    }
+    case REMOVE_TODOS: {
+      return state.filter(id => action.ids.indexOf(id) === -1);
     }
     default:
       return state;
@@ -35,9 +38,17 @@ function byId(state = {}, action) {
         delete copied[action.id];
         return copied;
       }
-    // case CLEAR_COMPLETED : {
-    //   return state.filter((todo) => todo.completed === false);
-    // }
+      case REMOVE_TODOS: {
+        const copied = Object.assign({}, state);
+        action.ids.forEach(id => {
+          for (let todo in copied) {
+            if (todo.id === id) {
+              delete copied[id];
+            }
+          }
+        });
+        return copied;
+      }
     default:
       return state;
   }

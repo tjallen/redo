@@ -7,17 +7,17 @@ const Footer = ({
   todos,
   onClearCompletedClick,
 }) => {
-  const completed = todos.reduce((acc, todo) => {
-    return todo.completed ? acc + 1 : acc
-  }, 0);
+  const completeIds = todos.filter(t => t.completed).map(t => t.id);
+  const completeCount = todos.reduce((acc, t) => 
+    t.completed ? acc + 1 : acc, 0);
   return (
     <div>
       <VisibilityMenu />
-      <TodoCount count={todos.length - completed} />
-      {completed > 0 ?
+      <TodoCount count={todos.length - completeCount} />
+      {completeCount > 0 ?
         <ClearCompletedButton
-          count={completed}
-          onClearCompletedClick={onClearCompletedClick}
+          count={completeCount}
+          onClearCompletedClick={() => onClearCompletedClick(completeIds)}
           >Clear completed
         </ClearCompletedButton>
         : null

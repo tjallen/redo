@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { clearCompleted } from './../actions';
+import { removeTodos } from './../actions';
 import Footer from './../components/Footer';
 import { withRouter } from 'react-router-dom';
 import { getVisibleTodos } from '../reducers';
@@ -11,17 +11,11 @@ const mapStateToProps = (state, { match }) => ({
   ),
 });
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onClearCompletedClick: () => {
-      dispatch(clearCompleted());
-    }
-  };
-};
-
 const FooterContainer = withRouter(connect(
   mapStateToProps,
-  mapDispatchToProps,
+  {
+    onClearCompletedClick: removeTodos,
+  }
 )(Footer));
 
 export default FooterContainer;

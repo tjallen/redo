@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-import { ADD_TODO, EDIT_TODO, REMOVE_TODO, TOGGLE_TODO,  CLEAR_COMPLETED } from './../constants';
+import { ADD_TODO, EDIT_TODO, REMOVE_TODO, TOGGLE_TODO, REMOVE_TODOS } from './../constants';
 
 // action creators
 export const addTodo = (text) => ({
@@ -18,6 +18,7 @@ export const removeTodo = (id) => ({
   type: REMOVE_TODO, id,
 });
 
-export const clearCompleted = () => ({
-  type: CLEAR_COMPLETED,
+export const removeTodos = (ids) => ({
+  type: REMOVE_TODOS,
+  ids,
 });
