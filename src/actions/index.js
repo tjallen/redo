@@ -6,7 +6,7 @@ import {
   FETCH_TODOS_FAILURE,
   EDIT_TODO,
   REMOVE_TODO,
-  TOGGLE_TODO,
+  TOGGLE_TODO_SUCCESS,
   REMOVE_TODOS
 } from './../constants';
 import * as api from '../api';
@@ -59,9 +59,13 @@ export const editTodo = (id, text) => ({
    type: EDIT_TODO, id, text,
 });
 
-export const toggleTodo = (id) => ({
-  type: TOGGLE_TODO, id,
-});
+export const toggleTodo = (id) => (dispatch) =>
+  api.toggleTodo(id).then(response => {
+    dispatch({
+      type: TOGGLE_TODO_SUCCESS,
+      response: normalize(response, schema.todo),
+    })
+  })
 
 export const removeTodo = (id) => ({
   type: REMOVE_TODO, id,
