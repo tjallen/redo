@@ -1,4 +1,8 @@
-import { FETCH_TODOS_REQUEST, FETCH_TODOS_SUCCESS } from '../constants';
+import {
+  FETCH_TODOS_REQUEST,
+  FETCH_TODOS_SUCCESS,
+  FETCH_TODOS_FAILURE
+} from '../constants';
 import { combineReducers } from 'redux';
 
 const createList = (filter) => {
@@ -21,6 +25,8 @@ const createList = (filter) => {
       case FETCH_TODOS_REQUEST:
         return true;
       case FETCH_TODOS_SUCCESS:
+        return false;
+      case FETCH_TODOS_FAILURE:
         return false;
       default:
         return state;
