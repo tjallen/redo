@@ -1,9 +1,7 @@
-import { v4 } from 'uuid';
 import {
   FETCH_TODOS_REQUEST,
   FETCH_TODOS_SUCCESS,
   FETCH_TODOS_FAILURE,
-  ADD_TODO,
   EDIT_TODO,
   REMOVE_TODO,
   TOGGLE_TODO,
@@ -12,7 +10,6 @@ import {
 import * as api from '../api';
 import { getIsFetching } from '../reducers';
 
-// async action creators
 export const fetchTodos = (filter) => (dispatch, getState) => {
   if (getIsFetching(getState(), filter)) {
     return Promise.resolve();
@@ -40,10 +37,13 @@ export const fetchTodos = (filter) => (dispatch, getState) => {
   });
 };
 
-// action creators
-export const addTodo = (text) => ({
-   type: ADD_TODO, text, id: v4(),
-});
+export const addTodo = (text) => (dispatch) =>
+  api.addTodo(text).then(response => {
+    dispatch({
+      type: 'ADD_TODO_SUCCESS',
+      response,
+    });
+  });
 
 export const editTodo = (id, text) => ({
    type: EDIT_TODO, id, text,
