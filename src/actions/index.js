@@ -9,9 +9,13 @@ import {
   REMOVE_TODOS
 } from './../constants';
 import * as api from '../api';
+import { getIsFetching } from '../reducers';
 
 // async action creators
-export const fetchTodos = (filter) => (dispatch) => {
+export const fetchTodos = (filter) => (dispatch, getState) => {
+  if (getIsFetching(getState(), filter)) {
+    return;
+  }
   dispatch(requestTodos(filter));
 
   return api.fetchTodos(filter).then(response => {
