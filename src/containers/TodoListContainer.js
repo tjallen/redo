@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
+  requestTodos,
   fetchTodos,
   removeTodo,
   editTodo,
@@ -8,7 +9,7 @@ import {
 } from './../actions';
 import TodoList from './../components/TodoList';
 import { withRouter } from 'react-router-dom';
-import { getVisibleTodos } from '../reducers';
+import { getVisibleTodos, getIsFetching } from '../reducers';
 
 class TodoListContainer extends Component {
   componentDidMount() {
@@ -20,10 +21,15 @@ class TodoListContainer extends Component {
     }
   }
   fetchData() {
-    const { filter, fetchTodos } = this.props;
+    const { filter, requestTodos, fetchTodos } = this.props;
+    requestTodos(filter);
     fetchTodos(filter);
   }
   render() {
+    const { todos, isFetching } = this.props;
+    if (isFetching && !todos.length) {
+      return <p>Loading...</p>
+    }
     return <TodoList {...this.props} />;
   }
 }
@@ -31,6 +37,7 @@ const mapStateToProps = (state, { match }) => {
   const filter = match.params.filter || 'all'
   return {
     todos: getVisibleTodos(state, filter),
+    isFetching: getIsFetching(state, filter),
     filter,
   }
 };
@@ -41,6 +48,7 @@ TodoListContainer = withRouter(connect(
     onToggleCompletedClick: toggleTodo,
     onRemoveTodoClick: removeTodo,
     onEditTodoComplete: editTodo,
+    requestTodos,
     fetchTodos,
   }
 )(TodoListContainer));
