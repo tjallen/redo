@@ -1,4 +1,4 @@
-import { FETCH_TODOS_SUCCESS } from '../constants';
+import { FETCH_TODOS_SUCCESS, ADD_TODO_SUCCESS } from '../constants';
 
 function byId(state = {}, action) {
   switch (action.type) {
@@ -8,6 +8,12 @@ function byId(state = {}, action) {
         nextState[todo.id] = todo;
       });
       return nextState;
+    }
+    case ADD_TODO_SUCCESS: {
+      return {
+        ...state,
+        [action.response.id]: action.response
+      };
     }
     default:
       return state;
