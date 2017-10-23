@@ -14,7 +14,7 @@ import { getIsFetching } from '../reducers';
 // async action creators
 export const fetchTodos = (filter) => (dispatch, getState) => {
   if (getIsFetching(getState(), filter)) {
-    return;
+    return Promise.resolve();
   }
   dispatch(requestTodos(filter));
 
