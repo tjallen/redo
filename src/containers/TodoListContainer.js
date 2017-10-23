@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
-  requestTodos,
   fetchTodos,
   removeTodo,
   editTodo,
@@ -21,8 +20,7 @@ class TodoListContainer extends Component {
     }
   }
   fetchData() {
-    const { filter, requestTodos, fetchTodos } = this.props;
-    requestTodos(filter);
+    const { filter, fetchTodos } = this.props;
     fetchTodos(filter);
   }
   render() {
@@ -48,7 +46,6 @@ TodoListContainer = withRouter(connect(
     onToggleCompletedClick: toggleTodo,
     onRemoveTodoClick: removeTodo,
     onEditTodoComplete: editTodo,
-    requestTodos,
     fetchTodos,
   }
 )(TodoListContainer));

@@ -11,14 +11,16 @@ import {
 import * as api from '../api';
 
 // async action creators
-export const fetchTodos = (filter) =>
-  api.fetchTodos(filter)
-    .then(response =>
-      receiveTodos(filter, response)
-  );
+export const fetchTodos = (filter) => (dispatch) => {
+  dispatch(requestTodos(filter));
+
+  return api.fetchTodos(filter).then(response => {
+    dispatch(receiveTodos(filter, response));
+  });
+};
 
 // action creators
-export const requestTodos = (filter) => ({
+const requestTodos = (filter) => ({
   type: REQUEST_TODOS,
   filter,
 });
