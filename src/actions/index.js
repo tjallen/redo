@@ -1,5 +1,6 @@
 import { v4 } from 'uuid';
 import {
+  REQUEST_TODOS,
   RECEIVE_TODOS,
   ADD_TODO,
   EDIT_TODO,
@@ -17,6 +18,10 @@ export const fetchTodos = (filter) =>
   );
 
 // action creators
+export const requestTodos = (filter) => ({
+  type: REQUEST_TODOS,
+  filter,
+});
 const receiveTodos = (filter, response) => ({
   type: RECEIVE_TODOS,
   filter,
