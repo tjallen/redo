@@ -1,15 +1,75 @@
+import {
+  RECEIVE_TODOS
+} from './../constants';
 import { combineReducers } from 'redux';
-import settings from './settings';
-import todos, * as fromTodos from './todos';
 
-const rootReducer = combineReducers({
-  todos,
-  settings
-});
-
-export default rootReducer;
-// named export selector
-export const getVisibleTodos = (state, filter) => {
-  return fromTodos.getVisibleTodos(state.todos, filter)
+const allIds = (state = [], action) => {
+  if (action.filter !== 'all') {
+    return state;
+  }
+  switch (action.type) {
+    case RECEIVE_TODOS: {
+      return action.response.map(todo => todo.id);
+    }
+    default:
+      return state;
+  }
 }
 
+const activeIds = (state = [], action) => {
+  if (action.filter !== 'active') {
+    return state;
+  }
+  switch (action.type) {
+    case RECEIVE_TODOS: {
+      return action.response.map(todo => todo.id);
+    }
+    default:
+      return state;
+  }
+}
+
+const completedIds = (state = [], action) => {
+  if (action.filter !== 'completed') {
+    return state;
+  }
+  switch (action.type) {
+    case RECEIVE_TODOS: {
+      return action.response.map(todo => todo.id);
+    }
+    default:
+      return state;
+  }
+}
+
+function byId(state = {}, action) {
+  switch (action.type) {
+    case RECEIVE_TODOS: {
+      const nextState = { ...state };
+      action.response.forEach(todo => {
+        nextState[todo.id] = todo;
+      });
+      return nextState;
+    }
+    default:
+      return state;
+  }
+}
+
+const idsByFilter = combineReducers({
+  all: allIds,
+  active: activeIds,
+  completed: completedIds,
+});
+
+const todosReducer = combineReducers({
+  byId,
+  idsByFilter,
+});
+
+export default todosReducer;
+// named export selector
+export const getVisibleTodos = (state, filter) => {
+  const ids = state.idsByFilter[filter];
+  return ids.map(id => state.byId[id]);
+};
