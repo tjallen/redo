@@ -5,7 +5,10 @@ import promise from 'redux-promise';
 import rootReducer from './reducers';
 
 const configureStore = () => {
-  const middleware = [logger, promise];
+  const middleware = [
+    logger,
+    promise
+  ];
   return createStore(
     rootReducer,
     composeWithDevTools(

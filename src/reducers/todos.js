@@ -1,23 +1,41 @@
 import {
-  ADD_TODO,
-  EDIT_TODO,
-  REMOVE_TODO,
-  REMOVE_TODOS,
-  TOGGLE_TODO,
+  RECEIVE_TODOS
 } from './../constants';
 import { combineReducers } from 'redux';
-import todo from './todo';
 
 const allIds = (state = [], action) => {
+  if (action.filter !== 'all') {
+    return state;
+  }
   switch (action.type) {
-    case ADD_TODO: { 
-      return [...state, action.id];
+    case RECEIVE_TODOS: {
+      return action.response.map(todo => todo.id);
     }
-    case REMOVE_TODO: {
-      return state.filter(id => id !== action.id);
+    default:
+      return state;
+  }
+}
+
+const activeIds = (state = [], action) => {
+  if (action.filter !== 'active') {
+    return state;
+  }
+  switch (action.type) {
+    case RECEIVE_TODOS: {
+      return action.response.map(todo => todo.id);
     }
-    case REMOVE_TODOS: {
-      return state.filter(id => action.ids.indexOf(id) === -1);
+    default:
+      return state;
+  }
+}
+
+const completedIds = (state = [], action) => {
+  if (action.filter !== 'completed') {
+    return state;
+  }
+  switch (action.type) {
+    case RECEIVE_TODOS: {
+      return action.response.map(todo => todo.id);
     }
     default:
       return state;
@@ -26,54 +44,32 @@ const allIds = (state = [], action) => {
 
 function byId(state = {}, action) {
   switch (action.type) {
-    case ADD_TODO:
-    case EDIT_TODO:
-    case TOGGLE_TODO:
-      return {
-        ...state,
-        [action.id]: todo(state[action.id], action),
-      }
-      case REMOVE_TODO: {
-        const copied = Object.assign({}, state);
-        delete copied[action.id];
-        return copied;
-      }
-      case REMOVE_TODOS: {
-        const copied = Object.assign({}, state);
-        action.ids.forEach(id => {
-          for (let todo in copied) {
-            if (todo.id === id) {
-              delete copied[id];
-            }
-          }
-        });
-        return copied;
-      }
+    case RECEIVE_TODOS: {
+      const nextState = { ...state };
+      action.response.forEach(todo => {
+        nextState[todo.id] = todo;
+      });
+      return nextState;
+    }
     default:
       return state;
   }
 }
 
-const todosReducer = combineReducers({
-  byId,
-  allIds,
+const idsByFilter = combineReducers({
+  all: allIds,
+  active: activeIds,
+  completed: completedIds,
 });
 
-const getAllTodos = (state) =>
-  state.allIds.map(id => state.byId[id]);
+const todosReducer = combineReducers({
+  byId,
+  idsByFilter,
+});
 
 export default todosReducer;
 // named export selector
 export const getVisibleTodos = (state, filter) => {
-  const allTodos = getAllTodos(state);
-  switch (filter) {
-    case 'all': return allTodos;
-    case 'active': return allTodos.filter(todo => !todo.completed);
-    case 'completed': return allTodos.filter(todo => todo.completed);
-    default:
-      console.log(
-        `trying to filter state (todos) by unknown or erroneous filter: ${filter}`
-      )
-      return allTodos;
-  }
+  const ids = state.idsByFilter[filter];
+  return ids.map(id => state.byId[id]);
 };
