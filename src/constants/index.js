@@ -4,6 +4,7 @@ export const FETCH_TODOS_FAILURE = 'FETCH_TODOS_FAILURE';
 export const ADD_TODO = 'ADD_TODO';
 export const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS';
 export const EDIT_TODO = 'EDIT_TODO';
+export const EDIT_TODO_SUCCESS = 'EDIT_TODO_SUCCESS';
 export const REMOVE_TODO = 'REMOVE_TODO';
 export const REMOVE_TODOS = 'REMOVE_TODOS';
 export const TOGGLE_TODO = 'TOGGLE_TODO';

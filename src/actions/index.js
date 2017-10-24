@@ -4,7 +4,8 @@ import {
   FETCH_TODOS_REQUEST,
   FETCH_TODOS_SUCCESS,
   FETCH_TODOS_FAILURE,
-  EDIT_TODO,
+  EDIT_TODO_SUCCESS,
+  ADD_TODO_SUCCESS,
   REMOVE_TODO,
   TOGGLE_TODO_SUCCESS,
   REMOVE_TODOS
@@ -50,7 +51,7 @@ export const addTodo = (text) => (dispatch) =>
       normalize(response, schema.todo)
     )
     dispatch({
-      type: 'ADD_TODO_SUCCESS',
+      type: ADD_TODO_SUCCESS,
       response: normalize(response, schema.todo),
     });
   });
@@ -58,7 +59,7 @@ export const addTodo = (text) => (dispatch) =>
 export const editTodo = (id, text) => (dispatch) =>
   api.addTodo(id, text).then(response => {
     dispatch({
-      type: 'EDIT_TODO_SUCCESS',
+      type: EDIT_TODO_SUCCESS,
       response: normalize(response, schema.todo),
     });
   });
