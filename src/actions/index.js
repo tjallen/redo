@@ -55,9 +55,17 @@ export const addTodo = (text) => (dispatch) =>
     });
   });
 
-export const editTodo = (id, text) => ({
-   type: EDIT_TODO, id, text,
-});
+export const editTodo = (id, text) => (dispatch) =>
+  api.addTodo(id, text).then(response => {
+    dispatch({
+      type: 'EDIT_TODO_SUCCESS',
+      response: normalize(response, schema.todo),
+    });
+  });
+
+// export const editTodo = (id, text) => ({
+//    type: EDIT_TODO, id, text,
+// });
 
 export const toggleTodo = (id) => (dispatch) =>
   api.toggleTodo(id).then(response => {
