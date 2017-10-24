@@ -1,4 +1,4 @@
-import * as types from '../../constants';
+import * as types from '../../actions';
 import * as actions from '../index';
 
 jest.mock('uuid', () => {

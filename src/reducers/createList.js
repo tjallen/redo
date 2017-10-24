@@ -4,7 +4,7 @@ import {
   FETCH_TODOS_FAILURE,
   ADD_TODO_SUCCESS,
   TOGGLE_TODO_SUCCESS
-} from '../constants';
+} from '../actions';
 import { combineReducers } from 'redux';
 
 const createList = (filter) => {

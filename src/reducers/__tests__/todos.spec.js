@@ -1,5 +1,5 @@
 import reducer from '../todos';
-import * as types from '../../constants';
+import * as types from '../../actions';
 
 jest.mock('uuid', () => {
   return {
