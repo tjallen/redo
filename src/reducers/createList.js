@@ -3,7 +3,8 @@ import {
   FETCH_TODOS_SUCCESS,
   FETCH_TODOS_FAILURE,
   ADD_TODO_SUCCESS,
-  TOGGLE_TODO_SUCCESS
+  TOGGLE_TODO_SUCCESS,
+  REMOVE_TODO_SUCCESS
 } from '../actions';
 import { combineReducers } from 'redux';
 
@@ -31,6 +32,9 @@ const createList = (filter) => {
           : state;
       case TOGGLE_TODO_SUCCESS:
         return handleToggle(state, action)
+      case REMOVE_TODO_SUCCESS:
+        const removedId = action.response.result;
+        return state.filter(id => id !== removedId);
       default:
         return state;
     }
