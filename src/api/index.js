@@ -60,3 +60,13 @@ export const editTodo = (id, text) =>
     todo.text = text;
     return todo;
   });
+
+export const removeTodo = (id) =>
+  delay().then(() => {
+    const todoIndex = fakeDatabase.todos.findIndex(t => t.id === id);
+    const todo = fakeDatabase.todos.find(t => t.id === id);
+    fakeDatabase.todos.splice(todoIndex, 1);
+    return todo;
+  });
+
+  window.todos = fakeDatabase.todos;
