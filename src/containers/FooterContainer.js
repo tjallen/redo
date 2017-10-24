@@ -9,6 +9,7 @@ const mapStateToProps = (state, { match }) => ({
     state,
     match.params.filter || 'all'
   ),
+  isAllTabActive: !match.params.filter,
 });
 
 const FooterContainer = withRouter(connect(
