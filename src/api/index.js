@@ -53,3 +53,10 @@ export const toggleTodo = (id) =>
     todo.completed = !todo.completed;
     return todo;
   });
+
+export const editTodo = (id, text) =>
+  delay(500).then(() => {
+    const todo = fakeDatabase.todos.find(t => t.id === id);
+    todo.text = text;
+    return todo;
+  });
