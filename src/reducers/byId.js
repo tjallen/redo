@@ -2,7 +2,8 @@ import {
   FETCH_TODOS_SUCCESS,
   EDIT_TODO_SUCCESS,
   TOGGLE_TODO_SUCCESS,
-  REMOVE_TODO_SUCCESS
+  REMOVE_TODO_SUCCESS,
+  REMOVE_TODOS_SUCCESS,
 } from '../actions';
 
 const byId = (state = {}, action) => {
@@ -16,11 +17,24 @@ const byId = (state = {}, action) => {
           ...action.response.entities.todos,
         };
       case REMOVE_TODO_SUCCESS:
-        const copy = Object.assign({}, state);
-        delete copy[action.response.result];
-        return { ...copy };
+      case REMOVE_TODOS_SUCCESS:
+        const ids = action.response.result;
+        const stateCopy = Object.assign({}, state);
+        const filtered = Object.keys(stateCopy)
+          .filter(key => !ids.includes(key))
+          .reduce((obj, key) => {
+            obj[key] = stateCopy[key];
+            return obj;
+          }, {});
+        return {
+          ...filtered
+        };
       default: {
-        console.log(`byId reached default case ${JSON.stringify(state)} ${JSON.stringify(action)}`);
+        console.log(
+          `byId reached default case
+          ${JSON.stringify(state)}
+          ${JSON.stringify(action)}
+          `);
         return state;
       }
     }
