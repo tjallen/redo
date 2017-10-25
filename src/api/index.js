@@ -63,9 +63,9 @@ export const editTodo = (id, text) =>
 
 export const removeTodo = (id) =>
   delay().then(() => {
-    const todoIndex = fakeDatabase.todos.findIndex(t => t.id === id);
     const todo = fakeDatabase.todos.find(t => t.id === id);
-    fakeDatabase.todos.splice(todoIndex, 1);
+    const newTodos = fakeDatabase.todos.filter(t => t.id !== id);
+    fakeDatabase.todos = newTodos;
     return todo;
   });
 

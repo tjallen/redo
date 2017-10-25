@@ -33,7 +33,7 @@ const createList = (filter) => {
       case TOGGLE_TODO_SUCCESS:
         return handleToggle(state, action)
       case REMOVE_TODO_SUCCESS:
-        const removedId = action.response.result;
+        const { result: removedId } = action.response;
         return state.filter(id => id !== removedId);
       default:
         return state;
