@@ -6,7 +6,6 @@ import {
 } from '../actions';
 
 const byId = (state = {}, action) => {
-  console.log('byId', state, action, action.response);
   if (action.response) {
     switch (action.type) {
       case FETCH_TODOS_SUCCESS:
@@ -21,8 +20,8 @@ const byId = (state = {}, action) => {
         delete copy[action.response.result];
         return { ...copy };
       default: {
-        // return state;
-        throw new Error(`byId reached default case ${state} ${action}`);
+        console.log(`byId reached default case ${JSON.stringify(state)} ${JSON.stringify(action)}`);
+        return state;
       }
     }
 

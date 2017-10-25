@@ -12,7 +12,7 @@ export const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS';
 export const EDIT_TODO_SUCCESS = 'EDIT_TODO_SUCCESS';
 export const REMOVE_TODO = 'REMOVE_TODO';
 export const REMOVE_TODO_SUCCESS = 'REMOVE_TODO_SUCCESS';
-export const REMOVE_TODOS = 'REMOVE_TODOS';
+export const REMOVE_TODOS_SUCCESS = 'REMOVE_TODOS_SUCCESS';
 export const TOGGLE_TODO = 'TOGGLE_TODO';
 export const TOGGLE_TODO_SUCCESS = 'TOGGLE_TODO_SUCCESS';
 export const SET_VISIBLE_TODOS = 'SET_VISIBLE_TODOS';
@@ -86,7 +86,15 @@ export const removeTodo = (id) => (dispatch) =>
     })
   })
 
-export const removeTodos = (ids) => ({
-  type: REMOVE_TODOS,
-  ids,
-});
+export const removeTodos = (ids) => (dispatch) => {
+  return new Promise(resolve => {
+    const removeOps = ids.map(id => api.removeTodo(id));
+    const results = Promise.all(removeOps);
+    results.then(response => {
+      dispatch({
+       type: REMOVE_TODOS_SUCCESS,
+       response: normalize(response, schema.arrayOfTodos),
+      })
+    })
+  })
+}

@@ -66,6 +66,7 @@ export const removeTodo = (id) =>
     const todo = fakeDatabase.todos.find(t => t.id === id);
     const newTodos = fakeDatabase.todos.filter(t => t.id !== id);
     fakeDatabase.todos = newTodos;
+    console.log(`api removed ${JSON.stringify(todo)}`);
     return todo;
   });
 
